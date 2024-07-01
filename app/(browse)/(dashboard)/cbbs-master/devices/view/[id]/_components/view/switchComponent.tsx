@@ -1,0 +1,62 @@
+"use client"
+import { Switch } from "@/components/ui/switch";
+import { DEVICE_MAINTAIN_TOGGLE, DEVICE_VIEW } from "@/endpoints";
+import { postRequest } from "@/lib/api";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+
+interface SwitchComponentProps {
+  deviceId: string;
+  type : "coil" |"maintain";
+  initialChecked: boolean;
+  className: string;
+  generatePayload: (deviceId: string, checked: boolean) => Promise<{ url: string; body: Record<string, any> }>;
+  // generatePayload: (deviceId: string, checked: boolean) => { url: string; body: Record<string, any> };
+}
+
+const SwitchComponent: React.FC<SwitchComponentProps> = ({ deviceId,type, initialChecked, className, generatePayload }) => {
+  const [isChecked, setIsChecked] = useState(initialChecked);
+
+  const handleClick = async () => {
+    const newValue = !isChecked;
+    setIsChecked(newValue);
+    const payload = await generatePayload(deviceId, newValue);
+    await postRequest(payload.url, payload.body);
+    if(type==="coil"){
+      toast.success("Triggered Device Status Toggle")
+    } else {
+      toast.success("Triggered Device Type Toggle")
+    }
+  
+    setTimeout(async ()=>{
+      const { deviceData } = await postRequest(DEVICE_VIEW, {
+        device_id: deviceId,
+      });
+      if(type==="coil"){
+      
+        setIsChecked(deviceData?.coil_value===1 ? true : false)
+      } else {
+        setIsChecked(deviceData?.is_maintain)
+      }
+    },10000)
+    
+   
+   
+  };
+
+  // Update the checked state if initialChecked changes
+  useEffect(() => {
+    setIsChecked(initialChecked);
+  }, [initialChecked]);
+
+
+  return (
+    <Switch
+      className={className}
+      checked={isChecked}
+      onClick={handleClick}
+    />
+  );
+};
+
+  export default SwitchComponent;

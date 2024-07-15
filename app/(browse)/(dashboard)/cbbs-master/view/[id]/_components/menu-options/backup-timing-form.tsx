@@ -15,16 +15,18 @@ import {
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import { fakePromise } from "@/app/(browse)/(auth)/_components/login-form";
+import { postRequest } from "@/lib/api";
+import { CBS_BACKUP_TIMER } from "@/endpoints";
 
 const formSchema = z.object({
   timer: z.coerce.number().min(1, "Field is required"),
 });
 
-export const BackupTimingForm = ({ cbs_id }: { cbs_id: string }) => {
+export const BackupTimingForm = ({ cbs_id, backupTimer }: { cbs_id: string, backupTimer? : number }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      timer: 30,
+      timer: backupTimer? backupTimer : 30,
     },
   });
 
@@ -33,10 +35,18 @@ export const BackupTimingForm = ({ cbs_id }: { cbs_id: string }) => {
   } = form;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    await postRequest(
+      CBS_BACKUP_TIMER,
+      {
+        cbs_id,
+        timer : values.timer
+      }
+      
+    )
     await fakePromise(3000).then(() => {
       toast.success("Backup Timer set");
     });
-  }
+  } 
 
   return (
     <Form {...form}>

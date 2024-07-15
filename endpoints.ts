@@ -15,6 +15,8 @@ export const CBS_LOGS_TABLE = CLIENT_API_BASE + "/cbs/logs";
 
 export const CBS_TOGGLE_AUTO_TEST =
   CLIENT_API_BASE + "/device/toggle/auto/test";
+export const CBS_BACKUP_TIMER = CLIENT_API_BASE + "/device/set/backup/timer"  
+export const CBS_SCHEDULED_AUTO_TEST = CLIENT_API_BASE + "/device/set/scheduledauto/timer" 
 
 export const DEVICE_LIST = CLIENT_API_BASE + "/device/list";
 export const DEVICE_VIEW = CLIENT_API_BASE + "/device/view";
@@ -33,3 +35,8 @@ export const DEVICE_DATA_GROUP_BY_ZONES =
   CLIENT_API_BASE + "/device/data/group/by/zones";
 export const DEVICE_TOGGLE_ZONE = CLIENT_API_BASE + "/device/toggle/zone";
 export const DEVICE_REFRESH_ZONE = CLIENT_API_BASE + "/device/refresh/by/zone";
+
+export const CBS_MAKE_DOWNLOAD_URL = CLIENT_API_BASE + "/download/make/presigned/url/cbs"
+export const DEVICE_MAKE_DOWNLOAD_URL = CLIENT_API_BASE + "/download/make/presigned/url/device"
+export const NOTIFICATION_MAKE_DOWNLOAD_URL = CLIENT_API_BASE + "/download/make/presigned/url/notification"
+

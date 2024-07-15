@@ -17,9 +17,10 @@ import { ScheduleForm } from "@/app/(browse)/(dashboard)/cbbs-master/view/[id]/_
 interface ModalDialogProps {
   children: React.ReactNode;
   manual: boolean;
+  cbs_id : string;
 }
 
-export function ModalDialog({ children, manual }: ModalDialogProps) {
+export function ModalDialog({ children, manual,cbs_id }: ModalDialogProps) {
   const closeRef = useRef<ElementRef<"button">>(null);
 
   return (
@@ -29,8 +30,8 @@ export function ModalDialog({ children, manual }: ModalDialogProps) {
         <DialogHeader>
           <DialogTitle>{manual ? "Manual" : "Schedule"} Auto-test</DialogTitle>
         </DialogHeader>
-        {manual && <ManualForm closeRef={closeRef} />}
-        {!manual && <ScheduleForm closeRef={closeRef} />}
+        {manual && <ManualForm closeRef={closeRef} cbs_id={cbs_id} />}
+        {!manual && <ScheduleForm closeRef={closeRef} cbs_id={cbs_id} />}
         <DialogFooter className="sm:justify-start">
           <DialogClose ref={closeRef} asChild>
             <Button type="button" className="sr-only" variant="secondary">

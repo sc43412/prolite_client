@@ -11,6 +11,7 @@ import { DASHBOARD_LIST } from "@/endpoints";
 import { postRequest } from "@/lib/api";
 import { Download } from "lucide-react";
 import { Suspense } from "react";
+import DownloadButton from "./_components/downloadButton";
 
 const DashboardPage = async ({
   searchParams,
@@ -64,12 +65,13 @@ const DashboardPage = async ({
 
   return (
     <div className="relative">
-      <Button
+      {/* <Button
         className="flex gap-2 absolute -right-3 -top-12 md:-top-14"
         variant="ghost"
       >
         <Download className="size-5" /> Download
-      </Button>
+      </Button> */}
+      <DownloadButton/>
       <div className="flex flex-col lg:flex-row gap-5 justify-center md:justify-start">
         <div className="flex flex-col gap-5 w-full lg:w-3/4">
           <Card className="flex flex-col sm:flex-row gap-5 w-full items-center">

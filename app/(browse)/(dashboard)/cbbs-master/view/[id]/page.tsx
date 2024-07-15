@@ -15,6 +15,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { DetailsCardHeader } from "./_components/details-card-header";
+import ExportButton from "./_components/export-button";
 
 const ViewPage = async ({ params }: { params: { id: string } }) => {
   const data = await postRequest(
@@ -133,7 +134,7 @@ const battery_current: DoughnutData = {
   return (
     <div className="relative">
       <div className="absolute right-0 -top-9 lg:-top-12 ">
-        <MenuOptions cbs_id={params.id} />
+        <MenuOptions cbs_id={params.id} backupTimer = {data.backupTimer} />
       </div>
       <div className="flex flex-col gap-5">
         <div className="flex flex-col md:flex-row gap-5">
@@ -144,7 +145,7 @@ const battery_current: DoughnutData = {
             cbs_id={params.id}
             headerItems={
               <div className="flex items-center gap-x-2">
-                <DetailsCardHeader />
+                <DetailsCardHeader tiggered_db={data?.db_cutoff} triggered_fire={data?.fire_signal} triggered_ac={data?.mains_status===0 ? true : false } />
                 <Link href={`/cbbs-master/devices/${params.id}`}>
                   <Button className={cn("h-8 w-[122px]")} variant="outline">
                     All devices
@@ -237,12 +238,13 @@ const battery_current: DoughnutData = {
           <Card className="w-[380px] sm:w-[700px] md:w-full p-3 md:p-5 mx-auto">
             <div className="flex justify-between items-center">
               <h2 className="font-medium text-xl my-5 w-fit">Logs</h2>
-              <Button
+              {/* <Button
                 className="flex gap-x-2 items-center h-8 w-[102px]"
                 variant="outline"
               >
                 <Upload className="size-4 font-bold" /> Export
-              </Button>
+              </Button> */}
+              <ExportButton cbs_id={params.id}/>
             </div>
             <DataTable
               initialData={table.cbs_logs || []}

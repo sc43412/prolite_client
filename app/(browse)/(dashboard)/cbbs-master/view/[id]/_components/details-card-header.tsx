@@ -5,25 +5,25 @@ import fire from "./assets/fire.svg";
 import electric from "./assets/electric.svg";
 import { Dropdown } from "@/components/dropdown";
 
-export const DetailsCardHeader = ({ triggered }: { triggered?: boolean }) => {
+export const DetailsCardHeader = ({ triggered_ac,triggered_fire,tiggered_db }: { triggered_ac? : boolean;triggered_fire?: boolean;tiggered_db?:boolean}) => {
   const triggers = [
     {
       label: "AC Cut Off",
       icon: power,
       bg: "#ED553B33",
-      triggered: triggered || true,
+      triggered: triggered_ac || false,
     },
     {
       label: "Fire Signal",
       icon: fire,
       bg: "#FBE8B5",
-      triggered: triggered || true,
+      triggered: triggered_fire || false,
     },
     {
       label: "DB Cut Off",
       icon: electric,
       bg: "#C8E7FF",
-      triggered: triggered || true,
+      triggered: tiggered_db || false,
     },
   ];
 

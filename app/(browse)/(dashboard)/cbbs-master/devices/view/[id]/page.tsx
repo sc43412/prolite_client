@@ -14,6 +14,7 @@ import { DEVICE_COIL_TOGGLE, DEVICE_GRAPH, DEVICE_LOGS_TABLE, DEVICE_MAINTAIN_TO
 import { Suspense } from "react";
 import { Switch } from "@/components/ui/switch";
 import SwitchComponent from "./_components/view/switchComponent";
+import ExportButtonForDevice from "./_components/view/export.table";
 
 const ViewPage = async ({
   params,
@@ -204,6 +205,7 @@ const ViewPage = async ({
         <Card className="w-[380px] sm:w-[700px] md:w-full p-3 md:p-5 mx-auto lg:w-9/12">
           <div className="flex justify-between items-center">
             <h2 className="font-medium text-xl mb-5 w-fit">Device Details</h2>
+            <ExportButtonForDevice device_id={params.id}/>
           </div>
           <DataTable
             columns={columns}

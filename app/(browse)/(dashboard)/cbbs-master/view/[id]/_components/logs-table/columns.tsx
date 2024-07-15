@@ -17,6 +17,7 @@ export type CBSLogs = {
   battery_percentage: number;
   charging_status: number;
   index?: number;
+  emergency_trigger : string[];
 };
 
 export const columns: ColumnDef<CBSLogs>[] = [
@@ -125,8 +126,13 @@ export const columns: ColumnDef<CBSLogs>[] = [
         Emergency Triggers
       </Button>
     ),
-    cell: ({ row }) => <span>N/A</span>,
+    cell: ({ row }) => (
+      <span className="capitalize">
+        {row.original.emergency_trigger.length ? row.original.emergency_trigger.join(', ') : "None"}
+      </span>
+    )
   },
+
   {
     accessorKey: "charging_status",
     header: ({ column }) => (

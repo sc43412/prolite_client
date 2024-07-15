@@ -132,4 +132,5 @@ export const columns: ColumnDef<CBSDeviceDetail>[] = [
       <span>{row.original.issue.length ? row.original.issue : "None"}</span>
     ),
   },
+  
 ];

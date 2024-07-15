@@ -24,6 +24,8 @@ import { LoaderCircle } from "lucide-react";
 import { RefObject } from "react";
 import { DatePickerWithTime } from "@/components/date-picker/date-picker-time";
 import { toast } from "sonner";
+import { CBS_SCHEDULED_AUTO_TEST } from "@/endpoints";
+import { postRequest } from "@/lib/api";
 
 const formSchema = z.object({
   startDate: z.string().min(1, {
@@ -39,9 +41,10 @@ const formSchema = z.object({
 
 interface ScheduleFormProps {
   closeRef: RefObject<HTMLButtonElement>;
+  cbs_id : string;
 }
 
-export function ScheduleForm({ closeRef }: ScheduleFormProps) {
+export function ScheduleForm({ closeRef,cbs_id }: ScheduleFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,6 +61,18 @@ export function ScheduleForm({ closeRef }: ScheduleFormProps) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     console.log(values);
+
+    await postRequest(
+      CBS_SCHEDULED_AUTO_TEST,
+      {
+        
+       
+        start_date : values.startDate,
+        interval : Number(values.interval),
+        time_limit : Number(values.timeLimit),
+        cbs_id : cbs_id,
+      }
+    )
 
     await fakePromise(3000).then(() => {
       closeRef?.current?.click();

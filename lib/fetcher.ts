@@ -34,9 +34,10 @@ const fetcher = async (
     throw new Error(`HTTP error! status: ${response.status}`);
   }
 
+
   const data = await response.json();
 
-  if (!data.success) {
+  if (!data?.success) {
     throw new Error(data.message || "Request failed with no error message");
   }
 

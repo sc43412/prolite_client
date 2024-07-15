@@ -167,8 +167,21 @@ export const columns: ColumnDef<CBSDevice>[] = [
     ),
     cell: ({ row }) => (
       <span className="capitalize">
-        {row.original.issue.length ? row.original.issue : "None"}
+        {row.original.issue.length ? row.original.issue.join(', ') : "None"}
       </span>
+    ),
+  },
+
+  {
+    accessorKey: "remark",
+    header: ({ column }) => (
+      <Button
+        size="table"
+        variant="tableHeader"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Remark
+      </Button>
     ),
   },
 

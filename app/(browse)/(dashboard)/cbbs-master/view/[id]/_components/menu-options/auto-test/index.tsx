@@ -5,7 +5,7 @@ import { Dropdown } from "@/components/dropdown";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 
-export const AutoTest = () => {
+export const AutoTest = ({cbs_id}:{cbs_id : string}) => {
   const options = [
     {
       label: "Manual Auto-test",
@@ -31,7 +31,7 @@ export const AutoTest = () => {
       }
     >
       {options.map((item, i) => (
-        <ModalDialog key={i} manual={item.type === "manual"}>
+        <ModalDialog key={i} manual={item.type === "manual"} cbs_id={cbs_id}>
           <Button
             onClick={(e) => e.stopPropagation()}
             key={i}

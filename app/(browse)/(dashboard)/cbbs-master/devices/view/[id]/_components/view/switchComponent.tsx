@@ -51,11 +51,16 @@ const SwitchComponent: React.FC<SwitchComponentProps> = ({ deviceId,type, initia
 
 
   return (
+    <>
     <Switch
       className={className}
       checked={isChecked}
       onClick={handleClick}
     />
+   { (type != "coil") &&  <span className="text-[#707070]">
+          {isChecked ? "M" : "NM"}
+        </span>}
+        </>
   );
 };
 

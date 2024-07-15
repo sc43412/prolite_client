@@ -24,6 +24,8 @@ import { fakePromise } from "@/app/(browse)/(auth)/_components/login-form";
 import { LoaderCircle } from "lucide-react";
 import { RefObject } from "react";
 import { toast } from "sonner";
+import { postRequest } from "@/lib/api";
+import { CBS_TOGGLE_AUTO_TEST } from "@/endpoints";
 
 const formSchema = z.object({
   time: z.string().min(1, {
@@ -33,8 +35,9 @@ const formSchema = z.object({
 
 interface ManualFormProps {
   closeRef: RefObject<HTMLButtonElement>;
+  cbs_id : string;
 }
-export function ManualForm({ closeRef }: ManualFormProps) {
+export function ManualForm({ closeRef,cbs_id }: ManualFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,6 +52,14 @@ export function ManualForm({ closeRef }: ManualFormProps) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     console.log(values);
+
+    await postRequest(
+      CBS_TOGGLE_AUTO_TEST,
+      {
+        cbs_id,
+        timer : Number(values.time)
+      }
+    )
 
     const timeInMinutes = parseInt(values.time);
     const timeInSeconds = timeInMinutes * 60;

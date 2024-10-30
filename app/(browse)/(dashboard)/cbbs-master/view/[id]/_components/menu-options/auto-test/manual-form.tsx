@@ -115,9 +115,14 @@ export function ManualForm({ closeRef,cbs_id }: ManualFormProps) {
                       <SelectValue placeholder="Select Time" />
                     </SelectTrigger>
                     <SelectContent>
+
                       <SelectItem value="5">5 minutes</SelectItem>
                       <SelectItem value="10">10 minutes</SelectItem>
                       <SelectItem value="15">15 minutes</SelectItem>
+                      <SelectItem value="90">90 minutes</SelectItem>
+                      <SelectItem value="180">180 minutes</SelectItem>
+                      <SelectItem value="0.0833">5 seconds</SelectItem>
+                      <SelectItem value="0.5">30 seconds</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>

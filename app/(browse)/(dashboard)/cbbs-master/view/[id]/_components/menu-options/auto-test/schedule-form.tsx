@@ -150,6 +150,8 @@ export function ScheduleForm({ closeRef,cbs_id }: ScheduleFormProps) {
                         <SelectItem value="5">5 minutes</SelectItem>
                         <SelectItem value="10">10 minutes</SelectItem>
                         <SelectItem value="15">15 minutes</SelectItem>
+                        <SelectItem value="0.0833">5 seconds</SelectItem>
+                        <SelectItem value="0.5">30 seconds</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormControl>

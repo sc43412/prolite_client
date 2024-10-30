@@ -16,6 +16,7 @@ export const CBS_LOGS_TABLE = CLIENT_API_BASE + "/cbs/logs";
 export const CBS_TOGGLE_AUTO_TEST =
   CLIENT_API_BASE + "/device/toggle/auto/test";
 export const CBS_BACKUP_TIMER = CLIENT_API_BASE + "/device/set/backup/timer"  
+export const CBS_CANCEL_SCHEDULED_AUTOTEST = CLIENT_API_BASE + "/device/toggle/cancel/scheduled/auto/test"
 export const CBS_SCHEDULED_AUTO_TEST = CLIENT_API_BASE + "/device/set/scheduledauto/timer" 
 
 export const DEVICE_LIST = CLIENT_API_BASE + "/device/list";

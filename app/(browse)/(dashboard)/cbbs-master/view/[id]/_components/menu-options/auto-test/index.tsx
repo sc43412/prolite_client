@@ -3,6 +3,8 @@
 import { ModalDialog } from "@/components/dialog";
 import { Dropdown } from "@/components/dropdown";
 import { Button } from "@/components/ui/button";
+import { CBS_BACKUP_TIMER, CBS_CANCEL_SCHEDULED_AUTOTEST } from "@/endpoints";
+import { postRequest } from "@/lib/api";
 import { ChevronDown } from "lucide-react";
 
 export const AutoTest = ({cbs_id}:{cbs_id : string}) => {
@@ -45,6 +47,21 @@ export const AutoTest = ({cbs_id}:{cbs_id : string}) => {
       <Button
         variant="ghost"
         className="text-black !py-0 text-xs leading-[15px] w-full flex justify-start"
+        onClick={async ()=>{
+          console.log("print called")
+          try{
+          await postRequest(
+            CBS_CANCEL_SCHEDULED_AUTOTEST,
+            {
+              cbs_id,
+              
+            }
+            
+          )
+        } catch(e){
+          console.log("error",e)
+        }
+        }}
       >
         Cancel Scheduled Auto-test
       </Button>

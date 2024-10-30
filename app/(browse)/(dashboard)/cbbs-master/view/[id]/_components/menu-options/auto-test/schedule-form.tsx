@@ -147,11 +147,15 @@ export function ScheduleForm({ closeRef,cbs_id }: ScheduleFormProps) {
                         <SelectValue placeholder="10 mins" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="5">5 minutes</SelectItem>
+                        {/* <SelectItem value="5">5 minutes</SelectItem>
                         <SelectItem value="10">10 minutes</SelectItem>
                         <SelectItem value="15">15 minutes</SelectItem>
                         <SelectItem value="0.0833">5 seconds</SelectItem>
+                        <SelectItem value="0.5">30 seconds</SelectItem> */}
                         <SelectItem value="0.5">30 seconds</SelectItem>
+                      <SelectItem value="30">30 minutes</SelectItem>
+                      <SelectItem value="60">60 minutes</SelectItem>
+                      <SelectItem value="90">90 minutes</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormControl>

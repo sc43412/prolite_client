@@ -12,7 +12,9 @@ export type CBSMaster = {
   connected_zones: number;
   no_of_devices: number;
   remark: string;
+  status: string;
   index?: number;
+  
 };
 
 export const columns: ColumnDef<CBSMaster>[] = [
@@ -81,6 +83,19 @@ export const columns: ColumnDef<CBSMaster>[] = [
       </Button>
     ),
     cell: ({ row }) => <span>{row.original.remark || "No remark."}</span>,
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <Button
+        size="table"
+        variant="tableHeader"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Status
+      </Button>
+    ),
+    cell: ({ row }) => <span>{row.original.status || "N/A"}</span>,
   },
   {
     accessorKey: "Actions",

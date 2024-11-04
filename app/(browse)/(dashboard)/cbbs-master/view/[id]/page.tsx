@@ -23,7 +23,7 @@ const ViewPage = async ({ params }: { params: { id: string } }) => {
     {
       cbs_id: params.id,
     },
-    { tags: ["cbs-master"] }
+    { revalidate: 10,tags: ["cbs-master"] }
   );
 
   const graph = await postRequest(

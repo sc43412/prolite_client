@@ -23,7 +23,7 @@ const ViewPage = async ({ params }: { params: { id: string } }) => {
     {
       cbs_id: params.id,
     },
-    { revalidate: 10,tags: ["cbs-master"] }
+    { tags: ["cbs-master"] }
   );
 
   const graph = await postRequest(
@@ -145,7 +145,7 @@ const battery_current: DoughnutData = {
             cbs_id={params.id}
             headerItems={
               <div className="flex items-center gap-x-2">
-                <DetailsCardHeader tiggered_db={data?.db_cutoff} triggered_fire={data?.fire_signal} triggered_ac={data?.mains_status===0 ? true : false } />
+                <DetailsCardHeader tiggered_db={data?.db_cutoff} triggered_fire={data?.fire_signal} triggered_ac={data?.mains_status===0 ? true : false } cbs_id={params.id} />
                 <Link href={`/cbbs-master/devices/${params.id}`}>
                   <Button className={cn("h-8 w-[122px]")} variant="outline">
                     All devices

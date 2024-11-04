@@ -28,10 +28,15 @@ export const DataItem = async ({
       { type: "cbs_name", label: "CBBS Name", value: data.cbs_name || "N/A" },
       { type: "_id", label: "CBBS ID", value: data._id || "N/A" },
       { type: "remark", label: "Remark", value: data.remark || "N/A" },
-      {
-        type: "main_supply_status",
-        label: "Main Supply Status",
-        value: data.mains_status !== 0 ? "On" : "Off",
+      // {
+      //   type: "main_supply_status",
+      //   label: "Main Supply Status",
+      //   value: data.mains_status !== 0 ? "On" : "Off",
+      // },
+       {
+        type: "client_name",
+        label: "Client Name",
+        value: data.client_name || "Joshi Enterprises ",
       },
       {
         type: "no_of_devices",
@@ -43,10 +48,15 @@ export const DataItem = async ({
         label: "No. of zones",
         value: data.no_of_zones || 0,
       },
+      // {
+      //   type: "client_name",
+      //   label: "Client Name",
+      //   value: data.client_name || "Joshi Enterprises ",
+      // },
       {
-        type: "client_name",
-        label: "Client Name",
-        value: data.client_name || "Joshi Enterprises ",
+        type: "main_supply_status",
+        label: "Main Supply Status",
+        value: data.mains_status !== 0 ? "On" : "Off",
       },
       {
         type: "battery_status",

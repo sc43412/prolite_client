@@ -64,7 +64,7 @@ export const columns: ColumnDef<CBSDeviceDetail>[] = [
     cell: ({ row }) => (
       <span
         className={cn(
-          row.original.coil_value ? "text-[#FF3131]" : "text-[#58B761]"
+          row.original.coil_value ?   "text-[#58B761]" : "text-[#FF3131]"
         )}
       >
         {row.original.coil_value ? "Active" : "Inactive"}

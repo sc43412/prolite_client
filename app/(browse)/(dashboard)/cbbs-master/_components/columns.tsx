@@ -79,7 +79,7 @@ export const columns: ColumnDef<CBSMaster>[] = [
         variant="tableHeader"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Remark
+        Description
       </Button>
     ),
     cell: ({ row }) => <span>{row.original.remark || "No remark."}</span>,

@@ -8,6 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { postRequest } from "@/lib/api";
 import { DEVICE_COIL_TOGGLE, DEVICE_MAINTAIN_TOGGLE } from "@/endpoints";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 export type CBSDevice = {
   _id: string;
@@ -122,6 +123,11 @@ export const columns: ColumnDef<CBSDevice>[] = [
           }}
           checked={!!row.original.coil_value}
         />
+        <span  className={cn(
+          row.original.coil_value ?   "text-[#58B761]" : "text-[#FF3131]"
+        )}>
+          {row.original.coil_value ? "A" : "IN"}
+        </span>
       </div>
     ),
   },
@@ -180,7 +186,7 @@ export const columns: ColumnDef<CBSDevice>[] = [
         variant="tableHeader"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Remark
+        Description
       </Button>
     ),
   },

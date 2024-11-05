@@ -27,6 +27,35 @@ export type CBSDevice = {
   index?: number;
 };
 
+const RemarkCell = ({ row } : any) => {
+  const [inputValue, setInputValue] = useState(row.original.remark || "N/A");
+
+  const onSubmit = async () => {
+    const data = await postRequest(
+      DEVICE_POST_REMARK,
+      {
+        device_id: row.original._id,
+        remark: inputValue
+      },
+    );
+    toast.success(`Remark added to Device ID ${row.original._id}`);
+  };
+
+  return (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <input
+        type="text"
+        placeholder="Enter Description"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        style={{ marginRight: "8px" }}
+      />
+      <button onClick={onSubmit} style={{ cursor: "pointer" }}>
+        <i className="icon-class">✅</i> {/* Replace with an actual icon class if needed */}
+      </button>
+    </div>
+  );
+};
 export const columns: ColumnDef<CBSDevice>[] = [
   {
     accessorKey: "zone_id",
@@ -193,51 +222,63 @@ export const columns: ColumnDef<CBSDevice>[] = [
   //   ),
   // },
 
-  {
-    accessorKey: "remark",
-    header: ({ column }) => (
-      <Button
-        size="table"
-        variant="tableHeader"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Description
-      </Button>
-    ),
-    cell: ({ row }) =>{ 
-    const [inputValue, setInputValue] = useState(row.original.remark || "N/A");
-    const onSubmit = async()=>{
-      const data = await postRequest(
-        DEVICE_POST_REMARK,
-        {
-          device_id: row.original._id,
-          remark : inputValue
-        },
+  // {
+  //   accessorKey: "remark",
+  //   header: ({ column }) => (
+  //     <Button
+  //       size="table"
+  //       variant="tableHeader"
+  //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+  //     >
+  //       Description
+  //     </Button>
+  //   ),
+  //   cell: ({ row }) =>{ 
+  //   const [inputValue, setInputValue] = useState(row.original.remark || "N/A");
+  //   const onSubmit = async()=>{
+  //     const data = await postRequest(
+  //       DEVICE_POST_REMARK,
+  //       {
+  //         device_id: row.original._id,
+  //         remark : inputValue
+  //       },
         
-      );
-      toast.success(`remark added in the Device id ${row.original._id}`);
+  //     );
+  //     toast.success(`remark added in the Device id ${row.original._id}`);
 
 
-    }
+  //   }
 
-    return (
-      <div style={{ display: "flex", alignItems: "center" }}>
-      <input
-        type="text"
-        placeholder="Enter Description"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        // placeholder="Enter remark"
-        style={{ marginRight: "8px" }}
-      />
-      <button onClick={onSubmit}  style={{ cursor: "pointer" }}>
-        <i className="icon-class">✅</i> {/* Replace with an actual icon class if needed */}
-      </button>
-    </div>
-    )
-    // <span>{row.original.remark || "No remark."}</span>,
-  }},
-
+  //   return (
+  //     <div style={{ display: "flex", alignItems: "center" }}>
+  //     <input
+  //       type="text"
+  //       placeholder="Enter Description"
+  //       value={inputValue}
+  //       onChange={(e) => setInputValue(e.target.value)}
+  //       // placeholder="Enter remark"
+  //       style={{ marginRight: "8px" }}
+  //     />
+  //     <button onClick={onSubmit}  style={{ cursor: "pointer" }}>
+  //       <i className="icon-class">✅</i> {/* Replace with an actual icon class if needed */}
+  //     </button>
+  //   </div>
+  //   )
+  //   // <span>{row.original.remark || "No remark."}</span>,
+  // }},
+{
+  accessorKey: "remark",
+  header: ({ column }) => (
+    <Button
+      size="table"
+      variant="tableHeader"
+      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+    >
+      Description
+    </Button>
+  ),
+  cell: ({ row }) => <RemarkCell row={row} />,  // Use the RemarkCell component here
+},
   {
     accessorKey: "Actions",
     cell: ({ row }) => (

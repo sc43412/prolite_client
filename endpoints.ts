@@ -12,6 +12,7 @@ export const CBS_LIST = CLIENT_API_BASE + "/cbs/list";
 export const CBS_VIEW = CLIENT_API_BASE + "/cbs/view";
 export const CBS_GRAPH = CLIENT_API_BASE + "/cbs/graphs";
 export const CBS_LOGS_TABLE = CLIENT_API_BASE + "/cbs/logs";
+export const CBS_SET_REMARK = CLIENT_API_BASE + "/cbs/set/remark/cbs"
 
 export const CBS_TOGGLE_AUTO_TEST =
   CLIENT_API_BASE + "/device/toggle/auto/test";
@@ -22,6 +23,7 @@ export const CBS_SCHEDULED_AUTO_TEST = CLIENT_API_BASE + "/device/set/scheduleda
 export const DEVICE_LIST = CLIENT_API_BASE + "/device/list";
 export const DEVICE_VIEW = CLIENT_API_BASE + "/device/view";
 export const DEVICE_COIL_TOGGLE = CLIENT_API_BASE + "/device/toggle/device";
+export const DEVICE_POST_REMARK = CLIENT_API_BASE + "/device/set/remark/device"
 export const DEVICE_MAINTAIN_TOGGLE =
   CLIENT_API_BASE + "/device/toggle/maintain";
 

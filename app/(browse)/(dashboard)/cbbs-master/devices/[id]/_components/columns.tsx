@@ -6,9 +6,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import { TaskViewButton } from "@/components/task-view-button";
 import { Switch } from "@/components/ui/switch";
 import { postRequest } from "@/lib/api";
-import { DEVICE_COIL_TOGGLE, DEVICE_MAINTAIN_TOGGLE } from "@/endpoints";
+import { DEVICE_COIL_TOGGLE, DEVICE_MAINTAIN_TOGGLE, DEVICE_POST_REMARK } from "@/endpoints";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 export type CBSDevice = {
   _id: string;
@@ -22,6 +23,7 @@ export type CBSDevice = {
   is_maintain: boolean;
   issue: string[];
   Temperature_Issue: number;
+  remark : string;
   index?: number;
 };
 
@@ -178,6 +180,19 @@ export const columns: ColumnDef<CBSDevice>[] = [
     ),
   },
 
+  // {
+  //   accessorKey: "remark",
+  //   header: ({ column }) => (
+  //     <Button
+  //       size="table"
+  //       variant="tableHeader"
+  //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+  //     >
+  //       Description
+  //     </Button>
+  //   ),
+  // },
+
   {
     accessorKey: "remark",
     header: ({ column }) => (
@@ -189,7 +204,39 @@ export const columns: ColumnDef<CBSDevice>[] = [
         Description
       </Button>
     ),
-  },
+    cell: ({ row }) =>{ 
+    const [inputValue, setInputValue] = useState(row.original.remark || "N/A");
+    const onSubmit = async()=>{
+      const data = await postRequest(
+        DEVICE_POST_REMARK,
+        {
+          device_id: row.original._id,
+          remark : inputValue
+        },
+        
+      );
+      toast.success(`remark added in the Device id ${row.original._id}`);
+
+
+    }
+
+    return (
+      <div style={{ display: "flex", alignItems: "center" }}>
+      <input
+        type="text"
+        placeholder="Enter Description"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        // placeholder="Enter remark"
+        style={{ marginRight: "8px" }}
+      />
+      <button onClick={onSubmit}  style={{ cursor: "pointer" }}>
+        <i className="icon-class">✅</i> {/* Replace with an actual icon class if needed */}
+      </button>
+    </div>
+    )
+    // <span>{row.original.remark || "No remark."}</span>,
+  }},
 
   {
     accessorKey: "Actions",

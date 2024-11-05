@@ -47,7 +47,17 @@ export const columns: ColumnDef<CBSDeviceDetail>[] = [
       </Button>
     ),
     cell: ({ row }) => (
-      <span>{format(row.original.createdAt, "dd/MM/yyyy, hh:mm a")}</span>
+      <span> {new Date(row.original.createdAt).toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "long",
+         year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second : "2-digit",
+        hour12: true,
+        timeZone: "Asia/Kolkata", // IST time zone
+      })}</span>
+      // {/* <span>{format(row.original.createdAt, "dd/MM/yyyy, hh:mm a")}</span> */}
     ),
   },
   {

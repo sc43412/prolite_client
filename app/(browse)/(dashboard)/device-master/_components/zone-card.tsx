@@ -6,6 +6,7 @@ export type Zone = {
   zone_no: number;
   devices: Device[];
   zone_status: boolean;
+  zone_active : boolean;
 };
 
 interface ZoneCardProps {
@@ -17,7 +18,7 @@ export const ZoneCard = ({ zone, cbs_id }: ZoneCardProps) => {
   return (
     <Card className="flex flex-col w-full">
       <div className="flex justify-between items-center">
-        <CardTitle>Zone {zone?.zone_no}</CardTitle>
+        <CardTitle>Zone {zone?.zone_no} : {zone?.zone_active?'Connected' : 'Disconnected'}</CardTitle>
         <ZoneDiscoverToggle cbs_id={cbs_id} zone={zone} />
       </div>
       <div className="flex gap-10 overflow-x-auto w-full">

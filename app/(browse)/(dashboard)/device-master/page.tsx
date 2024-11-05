@@ -4,9 +4,7 @@ import { DEVICE_DATA_GROUP_BY_ZONES } from "@/endpoints";
 import { getRequest } from "@/lib/api";
 
 const ClientMasterPage = async () => {
-  const { devicelist } = await getRequest(DEVICE_DATA_GROUP_BY_ZONES, {
-    revalidate: 1200,
-  });
+  const { devicelist } = await getRequest(DEVICE_DATA_GROUP_BY_ZONES);
 
   return (
     <div className="flex flex-col gap-5">

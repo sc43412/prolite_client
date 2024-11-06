@@ -30,9 +30,10 @@ const ViewPage = async ({ params }: { params: { id: string } }) => {
     CBS_GRAPH,
     {
       cbs_id: params.id,
-    },
-    { revalidate: 1800, tags: ["cbs-master"] }
+    }
   );
+
+  console.log(graph)
 
   const table = await postRequest(CBS_LOGS_TABLE, {
     page: 0,

@@ -27,7 +27,7 @@ export const DataItem = async ({
     cbs: [
       { type: "cbs_name", label: "CBBS Name", value: data.cbs_name || "N/A" },
       { type: "_id", label: "CBBS ID", value: data._id || "N/A" },
-      { type: "remark", label: "Remark", value: data.remark || "N/A" },
+      { type: "remark", label: "Description", value: data.remark || "N/A" },
       // {
       //   type: "main_supply_status",
       //   label: "Main Supply Status",
@@ -82,7 +82,7 @@ export const DataItem = async ({
       },
       {
         type: "remark",
-        label: "Remark",
+        label: "Description",
         value: data.deviceData?.remark ?? "N/A",
       },
       {

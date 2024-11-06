@@ -20,6 +20,13 @@ const DashboardPage = async ({
 }) => {
   const data = await postRequest(DASHBOARD_LIST);
 
+let { maintainDevices, nonMaintainDevices, inactiveDevices } = data.data.devices;
+
+// Set `inactiveDevices` to 0 if `maintainDevices` or `nonMaintainDevices` is present
+if (maintainDevices || nonMaintainDevices) {
+  inactiveDevices = 0;
+}
+
   const devices_doughnut: DoughnutData[] = [
     {
       title: "Total CBBS",
@@ -53,9 +60,9 @@ const DashboardPage = async ({
         {
           label: "Total Devices",
           data: [
-            data.data.devices.maintainDevices,
-            data.data.devices.nonMaintainDevices,
-            data.data.devices.inactiveDevices,
+            maintainDevices || 0,
+            nonMaintainDevices || 0,
+            inactiveDevices || 0,
           ],
           backgroundColor: ["#3F2381", "#BDB1D9", "#8A58FF"],
         },

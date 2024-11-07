@@ -80,7 +80,7 @@ let { maintainDevices, nonMaintainDevices, inactiveDevices,activeDevices } = dat
             activeDevices || 0,
             inactiveDevices || 0,
           ],
-          backgroundColor: [ "#BDB1D9", "#8A58FF"],
+          backgroundColor: [ "#8A58FF","#BDB1D9"],
         },
         
       ],

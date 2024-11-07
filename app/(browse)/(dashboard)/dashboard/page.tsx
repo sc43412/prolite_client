@@ -55,22 +55,6 @@ let { maintainDevices, nonMaintainDevices, inactiveDevices,activeDevices } = dat
     },
     {
       title: "Devices",
-      labels: ["Maintained", "Non-Maintened"],
-      datasets: [
-        {
-          label: "Total Devices",
-          data: [
-            maintainDevices || 0,
-            nonMaintainDevices || 0,
-            
-          ],
-          backgroundColor: ["#3F2381", "#BDB1D9"],
-        },
-        
-      ],
-    },
-    {
-      title: "Devices",
       labels: [ "Active", "Inactive"],
       datasets: [
         {
@@ -85,6 +69,23 @@ let { maintainDevices, nonMaintainDevices, inactiveDevices,activeDevices } = dat
         
       ],
     },
+    {
+      title: "Devices",
+      labels: ["Maintained", "Non-Maintened"],
+      datasets: [
+        {
+          label: "Total Devices",
+          data: [
+            maintainDevices || 0,
+            nonMaintainDevices || 0,
+            
+          ],
+          backgroundColor: ["#3F2381", "#BDB1D9"],
+        },
+        
+      ],
+    },
+  
   ];
 
   return (

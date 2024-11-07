@@ -20,12 +20,12 @@ const DashboardPage = async ({
 }) => {
   const data = await postRequest(DASHBOARD_LIST);
 
-let { maintainDevices, nonMaintainDevices, inactiveDevices } = data.data.devices;
+let { maintainDevices, nonMaintainDevices, inactiveDevices,activeDevices } = data.data.devices;
 
 // Set `inactiveDevices` to 0 if `maintainDevices` or `nonMaintainDevices` is present
-if (maintainDevices || nonMaintainDevices) {
-  inactiveDevices = 0;
-}
+// if (maintainDevices || nonMaintainDevices) {
+//   inactiveDevices = 0;
+// }
 
   const devices_doughnut: DoughnutData[] = [
     {
@@ -55,17 +55,34 @@ if (maintainDevices || nonMaintainDevices) {
     },
     {
       title: "Devices",
-      labels: ["Maintained", "Non-Maintened", "Inactive"],
+      labels: ["Maintained", "Non-Maintened"],
       datasets: [
         {
           label: "Total Devices",
           data: [
             maintainDevices || 0,
             nonMaintainDevices || 0,
+            
+          ],
+          backgroundColor: ["#3F2381", "#BDB1D9"],
+        },
+        
+      ],
+    },
+    {
+      title: "Devices",
+      labels: [ "Active", "Inactive"],
+      datasets: [
+        {
+          label: "Total Devices",
+          data: [
+           
+            activeDevices || 0,
             inactiveDevices || 0,
           ],
-          backgroundColor: ["#3F2381", "#BDB1D9", "#8A58FF"],
+          backgroundColor: [ "#BDB1D9", "#8A58FF"],
         },
+        
       ],
     },
   ];

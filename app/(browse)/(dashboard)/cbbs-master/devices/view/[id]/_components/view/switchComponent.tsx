@@ -4,7 +4,7 @@ import { DEVICE_MAINTAIN_TOGGLE, DEVICE_VIEW } from "@/endpoints";
 import { postRequest } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-
+import { cn } from "@/lib/utils";
 interface SwitchComponentProps {
   deviceId: string;
   type : "coil" |"maintain";
@@ -60,6 +60,14 @@ const SwitchComponent: React.FC<SwitchComponentProps> = ({ deviceId,type, initia
    { (type != "coil") &&  <span className="text-[#707070]">
           {isChecked ? "M" : "NM"}
         </span>}
+
+        {
+          (type == "coil") && <span  className={cn(
+            isChecked ?   "text-[#58B761]" : "text-[#FF3131]"
+          )}>
+            {isChecked ? "A" : "IN"}
+          </span>
+        }
         </>
   );
 };

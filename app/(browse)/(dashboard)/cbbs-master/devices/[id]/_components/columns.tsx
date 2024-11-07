@@ -38,7 +38,7 @@ const RemarkCell = ({ row } : any) => {
         remark: inputValue
       },
     );
-    toast.success(`Remark added to Device ID ${row.original._id}`);
+    toast.success(`Description added to Device ID ${row.original._id}`);
   };
 
   return (

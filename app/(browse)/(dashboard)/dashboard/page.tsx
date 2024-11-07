@@ -116,7 +116,7 @@ let { maintainDevices, nonMaintainDevices, inactiveDevices,activeDevices } = dat
               />
             </Suspense>
           </Card>
-          <div className="grid grid-row-3 sm:grid-cols-3 gap-5 w-full h-full">
+          <div className="grid grid-row-3 sm:grid-cols-4 gap-5 w-full h-full">
             {devices_doughnut.map((item, index) => (
               <Suspense
                 key={index}
